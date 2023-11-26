@@ -5,7 +5,7 @@
   "main": "out/main.js",
   "scripts": {
     "build": "tsc",
-    "check-lint": "eslint \"src/**/*.ts\"",
+    "check-lint": "eslint \"src/**.ts\" --cache --cache-location node_modules/.cache/eslint/.eslintcache",
     "check-format": "prettier . -c --cache",
     "pre-commit": "npm run check-lint && npm run check-format",
     "lint": "npm run check-lint --fix",
