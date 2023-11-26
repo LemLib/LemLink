@@ -12,7 +12,7 @@ jobs:
     permissions: 
       # actions: write
       # checks: write
-      contents: write
+      contents: read
       # deployments: write
       # id-token: write
       issues: write
