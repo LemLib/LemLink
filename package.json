@@ -58,5 +58,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/meisZWFLZ/LemLink.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
