@@ -17,7 +17,7 @@ jobs:
       # id-token: write
       issues: write
       # discussions: write
-      packages: write
+      # packages: write
       # pages: write
       pull-requests: write
       # repository-projects: write
