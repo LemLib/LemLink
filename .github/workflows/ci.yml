@@ -61,9 +61,9 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Configure NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      # - name: Configure NPM
+      #   run: |
+      #     echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Run Semantic Release
         run: npx semantic-release
