@@ -2,10 +2,11 @@
 .husky
 .github
 
-# dot files
+# config files
 .prettierignore
 .eslintrc.js
 webpack.config.js
+.commitlintrc.json
 
 # source maps 
 *.js.map
