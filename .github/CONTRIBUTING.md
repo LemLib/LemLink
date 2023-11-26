@@ -138,6 +138,7 @@ Here is a list of recommended extensions:
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) to check for spelling mistakes
 - [file-icons](https://marketplace.visualstudio.com/items?itemName=file-icons.file-icons) to display file icons
+- [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) to enforce commit style
 
 In order to contribute to LemLink, you will need to 
 1. [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the repository and clone it to your local machine. 
