@@ -17,4 +17,3 @@ webpack.config.js
 # ts 
 tsconfig.json 
 *.tsbuildinfo
-*.ts
