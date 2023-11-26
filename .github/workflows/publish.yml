@@ -8,8 +8,8 @@ jobs:
   release_and_publish:
     runs-on: ubuntu-latest
     permissions: 
-      actions: write
-      checks: write
+      # actions: write
+      # checks: write
       contents: write
       deployments: write
       id-token: write
@@ -19,8 +19,8 @@ jobs:
       pages: write
       pull-requests: write
       repository-projects: write
-      security-events: write
-      statuses: write
+      # security-events: write
+      # statuses: write
 
     steps:
       - name: Checkout code
