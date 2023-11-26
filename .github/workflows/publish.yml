@@ -10,19 +10,9 @@ jobs:
   release_and_publish:
     runs-on: ubuntu-latest
     permissions: 
-      # actions: write
-      # checks: write
-      contents: read
-      # deployments: write
-      # id-token: write
-      issues: write
-      # discussions: write
-      # packages: write
-      # pages: write
-      pull-requests: write
-      # repository-projects: write
-      # security-events: write
-      # statuses: write
+      contents: write
+      issues: read
+      pull-requests: read
 
     steps:
       - name: Checkout code
