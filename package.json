@@ -1,0 +1,45 @@
+{
+  "name": "@lemlib/lemlink",
+  "version": "0.0.0",
+  "description": "An alternative project manager and uploader for vex v5 projects",
+  "main": "out/main.js",
+  "scripts": {
+    "build": "tsc",
+    "check-lint": "eslint \"src/**/*.ts\"",
+    "check-format": "prettier . -c --cache",
+    "pre-commit": "npm run check-lint && npm run check-format",
+    "lint": "npm run check-lint --fix",
+    "format": "prettier . --write --cache",
+    "clean": "npm run lint && npm run format",
+    "test": "echo not implemented yet",
+    "package": "pkg . -t node18",
+    "prepare": "husky install",
+    "prepack": "npm run check-lint && npm run check-format"
+  },
+  "keywords": [
+    "lemlib",
+    "vex",
+    "vrc",
+    "robotics"
+  ],
+  "author": "meisZWFLZ",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^40.0.0",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.0.2"
+  },
+  "bin": {
+    "lem-link": "out/main.js"
+  },
+  "dependencies": {
+    "semantic-release": "^22.0.8"
+  }
+}

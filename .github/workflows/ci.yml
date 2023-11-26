@@ -1,0 +1,36 @@
+name: ci
+on:
+  pull_request:
+    branches: '*'
+  push:
+    branches: '*'
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm i
+      
+      - name: Lint
+        run: npm run check-lint
+      
+      - name: Check formatting
+        run: npm run check-format
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
