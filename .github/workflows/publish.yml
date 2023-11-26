@@ -12,11 +12,11 @@ jobs:
       # checks: write
       contents: write
       deployments: write
-      id-token: write
+      # id-token: write
       issues: write
-      discussions: write
+      # discussions: write
       packages: write
-      pages: write
+      # pages: write
       pull-requests: write
       repository-projects: write
       # security-events: write
