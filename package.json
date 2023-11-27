@@ -1,11 +1,11 @@
 {
   "name": "@lemlib/lemlink",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "An alternative project manager and uploader for vex v5 projects",
   "main": "out/main.js",
   "scripts": {
     "build": "tsc",
-    "check-lint": "eslint \"src/**/*.ts\"",
+    "check-lint": "eslint \"src/**.ts\" --cache --cache-location node_modules/.cache/eslint/.eslintcache",
     "check-format": "prettier . -c --cache",
     "pre-commit": "npm run check-lint && npm run check-format",
     "lint": "npm run check-lint --fix",
@@ -14,7 +14,8 @@
     "test": "echo not implemented yet",
     "package": "pkg . -t node18",
     "prepare": "husky install",
-    "prepack": "npm run check-lint && npm run check-format"
+    "prepack": "npm run check-lint && npm run check-format",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "lemlib",
@@ -36,7 +37,8 @@
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.1.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "semantic-release": "^22.0.8"
   },
   "bin": {
     "lem-link": "out/main.js"
@@ -46,22 +48,18 @@
   },
   "release": {
     "branches": [
-      "main",
+      "stable",
       {
-        "name": "beta",
+        "name": "pre-release",
         "prerelease": true
       }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      "@semantic-release/github"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meisZWFLZ/LemLink.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

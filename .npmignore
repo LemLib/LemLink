@@ -4,7 +4,7 @@
 
 # config files
 .prettierignore
-.eslintrc.js
+.eslintrc.json
 webpack.config.js
 .commitlintrc.json
 
@@ -17,4 +17,3 @@ webpack.config.js
 # ts 
 tsconfig.json 
 *.tsbuildinfo
-*.ts
