@@ -48,9 +48,9 @@
   },
   "release": {
     "branches": [
-      "main",
+      "stable",
       {
-        "name": "beta",
+        "name": "pre-release",
         "prerelease": true
       }
     ]
