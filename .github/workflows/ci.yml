@@ -35,7 +35,7 @@ jobs:
       - name: Test
         run: npm test
   release_and_publish:
-    if: ${{ github.ref_protected }} && contains(fromJSON('["pre-release", "stable"]'), ${{ github.ref_name }})
+    if: github.ref == 'refs/heads/pre-release' || github.ref == 'refs/heads/stable' 
     runs-on: ubuntu-latest
     environment: npm_publish_env
     needs: build
