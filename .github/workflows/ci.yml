@@ -35,7 +35,7 @@ jobs:
       - name: Test
         run: npm test
   release_and_publish:
-    if: ${{ github.ref_protected }} && contains(fromJSON('["pre-release", "stable"]'), ${{ github.ref_name }})
+    if: github.ref == 'refs/heads/pre-release' || github.ref == 'refs/heads/stable' 
     runs-on: ubuntu-latest
     environment: npm_publish_env
     needs: build
@@ -64,10 +64,6 @@ jobs:
       
       - name: Print Head of token
         run: echo ${{secrets.NPM_TOKEN}} | head -c6
-
-      - name: Configure NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Run Semantic Release
         run: npx semantic-release
