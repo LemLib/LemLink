@@ -1,9 +1,2 @@
-*
-
-!*/
-!*.js
-!*.ts
-!*.json
-
 node_modules
 out

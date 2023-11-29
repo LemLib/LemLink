@@ -1,10 +1,10 @@
 name: ci
 on:
   pull_request:
-    branches: '*'
+    branches: "*"
   push:
-    branches: '*'
-  
+    branches: "*"
+
   workflow_dispatch:
 
 jobs:
@@ -14,18 +14,18 @@ jobs:
       - name: Copy repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm i
-      
+
       - name: Lint
         run: npm run check-lint
-      
+
       - name: Check formatting
         run: npm run check-format
 
@@ -35,11 +35,11 @@ jobs:
       - name: Test
         run: npm test
   release_and_publish:
-    if: github.ref == 'refs/heads/pre-release' || github.ref == 'refs/heads/stable' 
+    if: github.ref == 'refs/heads/pre-release' || github.ref == 'refs/heads/stable'
     runs-on: ubuntu-latest
     environment: npm_publish_env
     needs: build
-    permissions: 
+    permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
@@ -48,20 +48,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          registry-url: 'https://registry.npmjs.org'
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: npm ci      
+        run: npm ci
 
       - name: Build project
         run: npm run build
-      
+
       - name: Print Head of token
         run: echo ${{secrets.NPM_TOKEN}} | head -c6
 
