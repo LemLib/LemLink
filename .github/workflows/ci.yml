@@ -65,10 +65,6 @@ jobs:
       - name: Print Head of token
         run: echo ${{secrets.NPM_TOKEN}} | head -c6
 
-      - name: Configure NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
       - name: Run Semantic Release
         run: npx semantic-release
         env:
