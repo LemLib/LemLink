@@ -2,7 +2,7 @@
   "name": "@lemlib/lemlink",
   "version": "0.0.0-development",
   "description": "An alternative project manager and uploader for vex v5 projects",
-  "main": "out/main.js",
+  "main": "out/index.js",
   "scripts": {
     "build": "tsc",
     "check-lint": "eslint \"src/**.ts\" --cache --cache-location node_modules/.cache/eslint/.eslintcache",
@@ -41,10 +41,7 @@
     "semantic-release": "^22.0.8"
   },
   "bin": {
-    "lem-link": "out/main.js"
-  },
-  "dependencies": {
-    "semantic-release": "^22.0.8"
+    "lem-link": "out/index.js"
   },
   "release": {
     "branches": [
