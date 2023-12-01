@@ -37,8 +37,8 @@
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.1.0",
-    "typescript": "^5.0.2",
-    "semantic-release": "^22.0.8"
+    "semantic-release": "^22.0.8",
+    "typescript": "^5.0.2"
   },
   "bin": {
     "lem-link": "out/index.js"
