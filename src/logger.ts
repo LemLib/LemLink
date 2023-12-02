@@ -14,7 +14,7 @@ export enum LOG_LEVEL {
   FATAL,
 }
 /**
- * Represents the a message for the {@linkcode ExternalLogger} 
+ * Represents the a message for the {@linkcode ExternalLogger}
  * @template Source where did this message come from?
  */
 export interface LogMessage<Source extends string> {
@@ -33,9 +33,9 @@ export interface LogMessage<Source extends string> {
  *
  * - Emitting an event using the {@linkcode log log()}     method.
  * - You can add a listener using the {@linkcode addSink addSink()}  method.
- * 
+ *
  * @template msg The type of message that this sink can accept
- * 
+ *
  * @example
  * class MySink extends BaseSink<string> {
  *   public override log(msg) {
