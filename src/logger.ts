@@ -13,7 +13,10 @@ export enum LOG_LEVEL {
   /** fatal description */
   FATAL,
 }
-
+/**
+ * Represents the a message for the {@linkcode ExternalLogger} 
+ * @template Source where did this message come from?
+ */
 export interface LogMessage<Source extends string> {
   /** where did this message come from? */
   source: Source;
@@ -28,9 +31,11 @@ export interface LogMessage<Source extends string> {
  *
  * Well you can kind of think of a Sink as an {@link https://nodejs.org/en/learn/asynchronous-work/the-nodejs-event-emitter EventEmitter}.
  *
- * - Emitting an event using the {@linkcode log()} method.
- * - You can add a listener using the {@linkcode addSink()} method.
- *
+ * - Emitting an event using the {@linkcode log log()}     method.
+ * - You can add a listener using the {@linkcode addSink addSink()}  method.
+ * 
+ * @template msg The type of message that this sink can accept
+ * 
  * @example
  * class MySink extends BaseSink<string> {
  *   public override log(msg) {
@@ -40,17 +45,17 @@ export interface LogMessage<Source extends string> {
  * // prints "Hello World"
  * new MySink.log("Hello World");
  *
- * @see {@linkcode BaseSink.log()}
- * @see {@linkcode BaseSink.addSink()}
+ * @see {@linkcode BaseSink.log BaseSink.log()}
+ * @see {@linkcode BaseSink.addSink BaseSink.addSink()}
  */
 export class BaseSink<M> {
   protected sinks: Array<BaseSink<M>> = [];
 
   /**
-   * Runs the {@linkcode log()} method of all sinks added to this sink via the {@linkcode addSink()} method
+   * Runs the {@linkcode log log()}  method of all sinks added to this sink via the {@linkcode addSink addSink()}  method
    * @param msg message that will be sent to the other sinks
    *
-   * @see {@linkcode BaseSink.addSink()}
+   * @see {@linkcode BaseSink.addSink BaseSink.addSink()}
    * @see {@linkcode BaseSink}
    */
   public log(msg: M): void {
@@ -61,9 +66,9 @@ export class BaseSink<M> {
 
   /**
    * Add sinks that will also be logged to when this sink is logged to
-   * @param sinks will be added to the
+   * @param sinks will be logged to when this sink is logged to
    *
-   * @see {@linkcode BaseSink.log()}
+   * @see {@linkcode BaseSink.log BaseSink.log()}
    * @see {@linkcode BaseSink}
    */
   public addSink(...sinks: Array<BaseSink<M>>): void {
@@ -79,7 +84,7 @@ export class BaseSink<M> {
  * @example
  * new Logger("lemlink.package-manger.install").log("fatal", 'could not retrieve package "ExampleLib"')
  * @see {@linkcode BaseSink}
- * @see {@linkcode Logger.log()}
+ * @see {@linkcode Logger.log Logger.log()}
  *
  * @internal
  */
@@ -109,7 +114,7 @@ export class Logger<Source extends Lowercase<string>> extends BaseSink<
    * @param msg message to send to {@linkcode ExternalLogger}
    *
    * @see {@linkcode Logger}
-   * @see {@linkcode BaseSink.log()}
+   * @see {@linkcode BaseSink.log BaseSink.log()}
    */
   public override log(level: LOG_LEVEL, msg: string): void;
   /**
@@ -118,7 +123,7 @@ export class Logger<Source extends Lowercase<string>> extends BaseSink<
    * @param msg message to send to {@linkcode ExternalLogger}
    *
    * @see {@linkcode Logger}
-   * @see {@linkcode BaseSink.log()}
+   * @see {@linkcode BaseSink.log BaseSink.log()}
    *
    * @internal
    */
@@ -147,7 +152,7 @@ export class Logger<Source extends Lowercase<string>> extends BaseSink<
  * // Now, whenever a log is made from LemLink,
  * // it will be logged to the terminal!
  *
- * @see {@linkcode ExternalLogger.addSink()}
+ * @see {@linkcode ExternalLogger.addSink ExternalLogger.addSink()}
  */
 export class ExternalLogger extends BaseSink<LogMessage<string>> {
   /** singleton instance */
@@ -176,7 +181,7 @@ export class ExternalLogger extends BaseSink<LogMessage<string>> {
    *
    * @see {@linkcode Logger} constructor
    * @see {@linkcode ExternalLogger}
-   * @see {@linkcode BaseSink.log()}
+   * @see {@linkcode BaseSink.log BaseSink.log()}
    *
    * @internal
    */
@@ -186,10 +191,10 @@ export class ExternalLogger extends BaseSink<LogMessage<string>> {
 
   /**
    * Add sinks that will also be logged to when this sink is logged to
-   * @param sinks will be added to the
+   * @param sinks will be logged to when this sink is logged to
    *
    * @see {@linkcode ExternalLogger}
-   * @see {@linkcode BaseSink.addSink()}
+   * @see {@linkcode BaseSink.addSink BaseSink.addSink()}
    */
   public static addSink(...sinks: Array<BaseSink<LogMessage<string>>>): void {
     this.instance.addSink(...sinks);
