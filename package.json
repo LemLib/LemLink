@@ -40,9 +40,6 @@
     "semantic-release": "^22.0.8",
     "typescript": "^5.0.2"
   },
-  "bin": {
-    "lem-link": "out/index.js"
-  },
   "release": {
     "branches": [
       "stable",
