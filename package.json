@@ -58,5 +58,8 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "octokit": "^3.1.2"
   }
 }
