@@ -1,4 +1,4 @@
-import { type Range, type SemVer } from "semver";
+import { eq as verEquals, type Range, type SemVer } from "semver";
 
 export interface PackageIdentifier {
   /**
@@ -40,6 +40,12 @@ export abstract class Package<
 
   public abstract getVersions(): Promise<V[]>;
   public abstract getLatest(): Promise<V | null>;
+
+  public async getVersion(version: SemVer): Promise<V | undefined> {
+    return (await this.getVersions()).find((v) =>
+      verEquals(v.version, version),
+    );
+  }
 
   public async getVersionsInRange(range: Range): Promise<V[]> {
     const versions = await this.getVersions();
