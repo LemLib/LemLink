@@ -2,8 +2,6 @@ import { type Octokit } from "octokit";
 import { PackageVersion, type PackageIdentifier } from "../package";
 import { type SemVer, parse } from "semver";
 import { type GithubPackageReleaseData } from "./package";
-import { type IncomingMessage } from "http";
-import { get as httpsGet, type RequestOptions } from "https";
 
 export class GithubPackageVersion extends PackageVersion {
   protected constructor(
@@ -29,25 +27,23 @@ export class GithubPackageVersion extends PackageVersion {
     return 0;
   }
 
-  public override async download(): Promise<NodeJS.ReadableStream | undefined> {
+  public override async download(): Promise<Buffer | undefined> {
     const index = this.getAssetIndex();
-    const auth = await this.client.auth();
-    const opts: RequestOptions = {};
 
-    if (
-      typeof auth === "object" &&
-      auth != null &&
-      "token" in auth &&
-      typeof auth.token === "string"
-    )
-      opts.headers = {
-        Authorization: `Bearer ${auth.token}`,
-      };
+    const res = await this.client.rest.repos.getReleaseAsset({
+      repo: this.packId.repo,
+      owner: this.packId.owner,
+      asset_id: this.data.assets[index].id,
+      headers: { accept: "application/octet-stream" },
+    });
 
-    const response = await new Promise<IncomingMessage>((resolve) =>
-      httpsGet(this.data.assets[index].url, opts, resolve),
+    const data = res.data;
+
+    if (data instanceof ArrayBuffer) {
+      return Buffer.from(data);
+    }
+    throw new Error(
+      "github api response was not Array. res status: " + res.status,
     );
-
-    return response;
   }
 }

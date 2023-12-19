@@ -1,4 +1,4 @@
-import { type Range, SemVer, maxSatisfying } from "semver";
+import { type Range, type SemVer } from "semver";
 
 export interface PackageIdentifier {
   /**
@@ -12,19 +12,17 @@ export interface PackageIdentifier {
   readonly repo: string;
 }
 
-export abstract class PackageVersion
-  extends SemVer
-  implements PackageIdentifier
-{
+export abstract class PackageVersion implements PackageIdentifier {
   readonly owner: string;
   readonly repo: string;
-  public constructor(packId: PackageIdentifier, version: SemVer) {
-    super(version);
-
+  public constructor(
+    packId: PackageIdentifier,
+    public readonly version: SemVer,
+  ) {
     this.owner = packId.owner;
     this.repo = packId.repo;
   }
-  public abstract download(): Promise<NodeJS.ReadableStream | undefined>;
+  public abstract download(): Promise<Buffer | undefined>;
 }
 
 export abstract class Package<
@@ -45,11 +43,13 @@ export abstract class Package<
 
   public async getVersionsInRange(range: Range): Promise<V[]> {
     const versions = await this.getVersions();
-    return versions.filter((v) => range.test(v));
+    return versions.filter((v) => range.test(v.version));
   }
 
-  public async getLatestInRange(range: Range): Promise<V | null> {
-    return maxSatisfying(await this.getVersionsInRange(range), range);
+  public async getLatestInRange(range: Range): Promise<V | undefined> {
+    return (await this.getVersionsInRange(range))
+      .sort((a, b) => a.version.compare(b.version))
+      .pop();
   }
 }
 
