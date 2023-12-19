@@ -28,6 +28,8 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@types/adm-zip": "^0.5.5",
+    "@types/semver": "^7.5.6",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
@@ -39,9 +41,6 @@
     "prettier": "^3.1.0",
     "semantic-release": "^22.0.8",
     "typescript": "^5.0.2"
-  },
-  "bin": {
-    "lem-link": "out/index.js"
   },
   "release": {
     "branches": [
@@ -58,5 +57,10 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "octokit": "^3.1.2",
+    "semver": "^7.5.4"
   }
 }
