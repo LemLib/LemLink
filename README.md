@@ -12,6 +12,7 @@ The creation of this template was inspired by [pros-cli](https://github.com/purd
 - [ ] Better package management
   - [ ] Install packages by name, eg: `lem install LemLib`
   - [ ] Packages can have their own dependencies, that will be installed alongside them
+- [ ] Plugin support
 - [ ] Maintainability
 - [ ] Bluetooth download?
 
