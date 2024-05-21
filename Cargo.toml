@@ -1,3 +1,10 @@
 [workspace]
 resolver = "2"
 members = ["packages/*"]
+
+[workspace.lints.rust]
+rust_2018_idioms = "warn"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+missing_const_for_fn = "warn"

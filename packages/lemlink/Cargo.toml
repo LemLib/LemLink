@@ -8,3 +8,6 @@ clap = { version = "4.5.4", features = ["derive"] }
 lemlink-plugin-interface = { version = "0.1.0", path = "../lemlink-plugin-interface" }
 serde = { version = "1.0.202", features = ["derive"] }
 toml = "0.8.13"
+
+[lints]
+workspace = true
