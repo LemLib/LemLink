@@ -12,11 +12,11 @@ use vex_v5_serial::{
 #[derive(clap::Parser, Debug)]
 #[command()]
 pub struct UploadArgs {
-    /// The path to the file cold_bin to be uploaded
-    #[arg(long, num_args = 1, value_name = "PATH")]
+    /// The path to the cold_bin file to upload
+    #[arg(value_name = "PATH")]
     cold_bin: std::path::PathBuf,
     /// The name to be displayed on the V5 brain
-    #[arg(long, num_args = 1, value_name = "NAME")]
+    #[arg(value_name = "NAME")]
     name: String,
     /// Action to do after uploading
     #[arg(long = "after", value_enum, default_value_t = DoAfterUpload::None)]
