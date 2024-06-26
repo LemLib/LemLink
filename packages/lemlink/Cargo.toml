@@ -1,13 +1,16 @@
 [package]
-name = "lemlink"
-version = "0.1.0"
-edition = "2021"
+    edition = "2021"
+    name    = "lemlink"
+    version = "0.1.0"
 
 [dependencies]
-clap = { version = "4.5.4", features = ["derive"] }
-lemlink-plugin-interface = { version = "0.1.0", path = "../lemlink-plugin-interface" }
-serde = { version = "1.0.202", features = ["derive"] }
-toml = "0.8.13"
+    clap                     = { version = "4.5.4", features = ["derive"] }
+    futures                  = "0.3.30"
+    lemlink-plugin-interface = { version = "0.1.0", path = "../lemlink-plugin-interface" }
+    serde                    = { version = "^1.0.203", features = ["derive"] }
+    toml                     = "0.8.13"
+    vex_v5_serial            = { git = "https://github.com/vexide/vex-v5-serial.git", branch = "main" }
+
 
 [lints]
-workspace = true
+    workspace = true
